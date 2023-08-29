@@ -8,7 +8,11 @@ int	main(void)
 
 	fd = open("test", O_RDONLY);
 
-	get_next_line(fd);
+	printf("%s\n\n", get_next_line(fd));
+	printf("%s\n\n", get_next_line(fd));
+	printf("%s\n\n", get_next_line(fd));
+	printf("%s\n\n", get_next_line(fd));
+	printf("%s\n\n", get_next_line(fd));
 	
 	return (0);
 }
