@@ -6,7 +6,7 @@
 /*   By: jvets <jvets@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 16:22:14 by jvets             #+#    #+#             */
-/*   Updated: 2023/08/29 18:11:26 by jvets            ###   ########.fr       */
+/*   Updated: 2023/08/29 21:40:21 by jvets            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,6 +142,7 @@ void	add_node(char *content, int end_of_line, t_list ***head)
 		current->eol = end_of_line;
 		str = ft_strjoin(current->content, content);
 		free(current->content);
+		free(content);
 		current->content = str;
 	}
 	else
