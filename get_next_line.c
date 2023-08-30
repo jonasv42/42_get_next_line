@@ -6,7 +6,7 @@
 /*   By: jvets <jvets@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 16:15:24 by jvets             #+#    #+#             */
-/*   Updated: 2023/08/30 15:57:09 by jvets            ###   ########.fr       */
+/*   Updated: 2023/08/30 16:44:48 by jvets            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	*get_next_line(int fd)
 	b_read = -1;
 	while (!result)
 	{
-		if (head && (head->content)[ft_strlen(head->content) - 1] == '\n')
+		if (head && head->content && ft_strlen(head->content) > 0 && head->content[ft_strlen(head->content) - 1] == '\n')
 		{
 			result = ft_strdup((char *)head->content);
 			delete_first_node(&head);

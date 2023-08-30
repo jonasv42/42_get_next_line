@@ -1,0 +1,4 @@
+.nfs*
+*.gch
+main.c
+a.out

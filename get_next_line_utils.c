@@ -6,7 +6,7 @@
 /*   By: jvets <jvets@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 16:22:14 by jvets             #+#    #+#             */
-/*   Updated: 2023/08/29 21:40:21 by jvets            ###   ########.fr       */
+/*   Updated: 2023/08/30 16:18:30 by jvets            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ void	buffer_cutter(char *buffer, t_list **head)
 	len = 1;
 	while (1)
 	{
-		if (buffer[c] == '\0')
+		if (buffer[c] == '\0') // problema:põe um zero em nova node?
 		{
 			add_node(ft_substr(buffer, offset, len), 0, &head);
 			break;
