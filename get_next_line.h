@@ -6,7 +6,7 @@
 /*   By: jvets <jvets@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 16:14:15 by jvets             #+#    #+#             */
-/*   Updated: 2023/08/29 21:31:09 by jvets            ###   ########.fr       */
+/*   Updated: 2023/08/30 15:35:46 by jvets            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 
 typedef struct s_list
 {
-	void			*content;
+	char			*content;
 	int				eol;
 	struct s_list	*next;
 } t_list;
