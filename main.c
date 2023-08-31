@@ -21,7 +21,7 @@ int	main(void)
 	to_free = get_next_line(5454);
 	printf("%s\n\n", to_free);
 	free(to_free);
-	close(fd);
+
 	fd = open("read_error.txt", O_RDONLY);
 	printf("%i\n", fd);
 	to_free = get_next_line(fd);
