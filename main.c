@@ -4,17 +4,21 @@
 
 int	main(void)
 {
+	char	*to_free;
 	
-	printf("%zd\n", ft_strlen("\n"));
-	// int		fd;
+	int		fd;
 
-	// fd = open("nl", O_RDONLY);
+	fd = open("41_with_nl", O_RDONLY);
 
-	// printf("%s\n\n", get_next_line(fd));
-	// printf("%s\n\n", get_next_line(fd));
-	// printf("%s\n\n", get_next_line(fd));
-	// printf("%s\n\n", get_next_line(fd));
-	// printf("%s\n\n", get_next_line(fd));
+	to_free = get_next_line(fd);
+	printf("%s\n\n", to_free);
+	free(to_free);
+	to_free = get_next_line(fd);
+	printf("%s\n\n", to_free);
+	free(to_free);
+	to_free = get_next_line(fd);
+	printf("%s\n\n", to_free);
+	free(to_free);
 	
 	return (0);
 }

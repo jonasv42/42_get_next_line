@@ -1,4 +1,6 @@
 .nfs*
+*with_nl*
+*42test*
 *.gch
 main.c
 a.out

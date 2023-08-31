@@ -6,7 +6,7 @@
 /*   By: jvets <jvets@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 16:22:14 by jvets             #+#    #+#             */
-/*   Updated: 2023/08/30 16:18:30 by jvets            ###   ########.fr       */
+/*   Updated: 2023/08/30 22:12:21 by jvets            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,24 +98,23 @@ void	buffer_cutter(char *buffer, t_list **head)
 {
 	ssize_t	c;
 	ssize_t	offset;
-	int		end_of_line;
 	int		len;
 
 	c = 0;
 	offset = 0;
-	end_of_line = 0;
 	len = 1;
 	while (1)
 	{
-		if (buffer[c] == '\0') // problema:põe um zero em nova node?
+		if (buffer[c] == '\0')
 		{
-			add_node(ft_substr(buffer, offset, len), 0, &head);
+			if (buffer[c - 1] != '\n') //para não criar node vazia
+				add_node(ft_substr(buffer, offset, len), &head);
 			break;
 		}
 		if (buffer[c] == '\n')
 		{
 			c++;
-			add_node(ft_substr(buffer, offset, len), 1, &head); // why not &&head?
+			add_node(ft_substr(buffer, offset, len), &head); // why not &&head?
 			offset = c;
 			len = 1;
 		}
@@ -127,7 +126,7 @@ void	buffer_cutter(char *buffer, t_list **head)
 	}
 }
 
-void	add_node(char *content, int end_of_line, t_list ***head)
+void	add_node(char *content, t_list ***head)
 {
 	t_list	*new_node;
 	t_list	*current;
@@ -136,24 +135,21 @@ void	add_node(char *content, int end_of_line, t_list ***head)
 	current = **head;
 	while (current != NULL && current->next != NULL)
 		current = current->next;
-	
-	if (current != NULL && current->eol == 0) // if no \n is found strjoin
+	if (current != NULL && ft_strlen(current->content) > 0 && current->content[ft_strlen(current->content) - 1] != '\n') // if no \n is found strjoin
 	{
-		current->eol = end_of_line;
 		str = ft_strjoin(current->content, content);
 		free(current->content);
 		free(content);
 		current->content = str;
 	}
-	else
+	else /*if (ft_strlen(content) != 0)*/
 	{
 		new_node = malloc(sizeof(t_list));
-		// if (!new_node)
-		// 	return (NULL);
+		if (!new_node)
+			return ;
 		new_node->content = content;
-		new_node->eol = end_of_line;
 		new_node->next = NULL;
-		if (!**head)
+		if (!**head || ft_strlen((**head)->content) == 0)
 			**head = new_node;
 		else
 			current->next = new_node;
