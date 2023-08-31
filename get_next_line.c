@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <stdio.h>
 
 // how can i know if my file descriptor has been closed and opened again,
 //in which case i need to free my entire list?

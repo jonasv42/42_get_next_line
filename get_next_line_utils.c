@@ -77,7 +77,7 @@ size_t	ft_strlen(const char *s)
 	return (c);
 }
 
-char	*ft_strdup(const char *s)
+char	*ft_strdup(const char *s) // incorporate in return and delete first node
 {
 	int		str_len;
 	char	*str;
@@ -100,7 +100,7 @@ void	buffer_cutter(char *buffer, t_list **head)
 	ssize_t	offset;
 	int		len;
 
-	c = 0;
+	c = 0; // use struct to diminish lines?
 	offset = 0;
 	len = 1;
 	while (1)
