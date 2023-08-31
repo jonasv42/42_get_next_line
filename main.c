@@ -8,17 +8,42 @@ int	main(void)
 	
 	int		fd;
 
-	fd = open("41_with_nl", O_RDONLY);
-
+	fd = open("read_error.txt", O_RDONLY);
+	printf("%i\n", fd);
 	to_free = get_next_line(fd);
 	printf("%s\n\n", to_free);
 	free(to_free);
+	printf("%i\n", fd);
 	to_free = get_next_line(fd);
 	printf("%s\n\n", to_free);
 	free(to_free);
+	printf("%i\n", fd);
+	to_free = get_next_line(5454);
+	printf("%s\n\n", to_free);
+	free(to_free);
+	close(fd);
+	fd = open("read_error.txt", O_RDONLY);
+	printf("%i\n", fd);
 	to_free = get_next_line(fd);
 	printf("%s\n\n", to_free);
 	free(to_free);
+	printf("%i\n", fd);
+	to_free = get_next_line(fd);
+	printf("%s\n\n", to_free);
+	free(to_free);
+	printf("%i\n", fd);
+	to_free = get_next_line(fd);
+	printf("%s\n\n", to_free);
+	free(to_free);
+	printf("%i\n", fd);
+	to_free = get_next_line(fd);
+	printf("%s\n\n", to_free);
+	free(to_free);
+	printf("%i\n", fd);
+	to_free = get_next_line(fd);
+	printf("%s\n\n", to_free);
+	free(to_free);
+	
 	
 	return (0);
 }
