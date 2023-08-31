@@ -96,32 +96,30 @@ char	*ft_strdup(const char *s) // incorporate in return and delete first node
 
 void	buffer_cutter(char *buffer, t_list **head)
 {
-	ssize_t	c;
-	ssize_t	offset;
-	int		len;
+	t_cut	cut;
 
-	c = 0; // use struct to diminish lines?
-	offset = 0;
-	len = 1;
+	cut.c = 0;
+	cut.offset = 0;
+	cut.len = 1;
 	while (1)
 	{
-		if (buffer[c] == '\0')
+		if (buffer[cut.c] == '\0')
 		{
-			if (buffer[c - 1] != '\n') //para não criar node vazia
-				add_node(ft_substr(buffer, offset, len), &head);
+			if (buffer[cut.c - 1] != '\n') //para não criar node vazia
+				add_node(ft_substr(buffer, cut.offset, cut.len), &head);
 			break;
 		}
-		if (buffer[c] == '\n')
+		if (buffer[cut.c] == '\n')
 		{
-			c++;
-			add_node(ft_substr(buffer, offset, len), &head); // why not &&head?
-			offset = c;
-			len = 1;
+			cut.c++;
+			add_node(ft_substr(buffer, cut.offset, cut.len), &head); // why not &&head?
+			cut.offset = cut.c;
+			cut.len = 1;
 		}
 		else
 		{
-			c++;
-			len++;
+			cut.c++;
+			cut.len++;
 		}
 	}
 }

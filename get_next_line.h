@@ -26,6 +26,13 @@ typedef struct s_list
 	struct s_list	*next;
 }	t_list;
 
+typedef struct s_cut
+{
+	ssize_t	c;
+	ssize_t	offset;
+	int		len;
+}	t_cut;
+
 char	*get_next_line(int fd);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 void	add_node(char *content, t_list ***head);

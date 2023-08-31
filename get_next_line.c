@@ -28,6 +28,7 @@ char	*get_next_line(int fd)
 	b_read = -2;
 	while (!result)
 	{
+		//make from common parts if and else if an if for fewer lines?
 		if (head && head->content && ft_strlen(head->content) > 0
 			&& head->content[ft_strlen(head->content) - 1] == '\n')
 			return_and_delete_first_node(&head, &result);
