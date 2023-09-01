@@ -6,7 +6,7 @@
 /*   By: jvets <jvets@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 16:14:15 by jvets             #+#    #+#             */
-/*   Updated: 2023/08/31 22:03:57 by jvets            ###   ########.fr       */
+/*   Updated: 2023/09/01 16:03:47 by jvets            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,13 @@ typedef struct s_nodes
 
 char	*get_next_line(int fd);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
-void	add_node(char *content, t_list ***head);
-void	buffer_cutter(char *buffer, t_list **head);
 size_t	ft_strlen(const char *s);
 char	*ft_strdup(const char *s);
+char	*ft_strjoin(char const *s1, char const *s2);
+void	return_function(t_list **head, char **result, int r);
+void	add_node(char *content, t_list ****head);
+void	buffer_cutter(char *buffer, t_list ***head);
+void	read_file(ssize_t *b_read, t_list **head, int fd);
+void	*start_after_string(char **substr);
 
 #endif

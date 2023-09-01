@@ -6,7 +6,7 @@
 /*   By: jvets <jvets@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 16:22:14 by jvets             #+#    #+#             */
-/*   Updated: 2023/08/31 22:12:53 by jvets            ###   ########.fr       */
+/*   Updated: 2023/08/31 22:21:18 by jvets            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ size_t	ft_strlen(const char *s)
 	return (c);
 }
 
-char	*ft_strdup(const char *s) // incorporate in return and delete first node
+char	*ft_strdup(const char *s)
 {
 	int		str_len;
 	char	*str;
@@ -92,61 +92,4 @@ char	*ft_strdup(const char *s) // incorporate in return and delete first node
 		str_len--;
 	}
 	return (str);
-}
-
-void	buffer_cutter(char *buffer, t_list **head)
-{
-	t_cut	cut;
-
-	cut.c = 0;
-	cut.offset = 0;
-	cut.len = 1;
-	while (1)
-	{
-		if (buffer[cut.c] == '\0')
-		{
-			if (buffer[cut.c - 1] != '\n') //para não criar node vazia
-				add_node(ft_substr(buffer, cut.offset, cut.len), &head);
-			break;
-		}
-		if (buffer[cut.c] == '\n')
-		{
-			cut.c++;
-			add_node(ft_substr(buffer, cut.offset, cut.len), &head); // why not &&head?
-			cut.offset = cut.c--;
-			cut.len = 1;
-		}
-		else
-			cut.len++;
-		cut.c++;
-	}
-}
-
-void	add_node(char *content, t_list ***head)
-{
-	t_nodes	node;
-
-	node.current = **head;
-	while (node.current != NULL && node.current->next != NULL)
-		node.current = node.current->next;
-	if (node.current != NULL && node.current->content
-		&& node.current->content[ft_strlen(node.current->content) - 1] != '\n')
-	{
-		node.str = ft_strjoin(node.current->content, content);
-		free(node.current->content);
-		free(content);
-		node.current->content = node.str;
-	}
-	else
-	{
-		node.new_node = malloc(sizeof(t_list));
-		if (!node.new_node)
-			return ;
-		node.new_node->content = content;
-		node.new_node->next = NULL;
-		if (!**head || (**head)->content == NULL)
-			**head = node.new_node;
-		else
-			node.current->next = node.new_node;
-	}
 }
