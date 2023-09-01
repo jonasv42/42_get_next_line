@@ -6,7 +6,7 @@
 /*   By: jvets <jvets@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 16:22:14 by jvets             #+#    #+#             */
-/*   Updated: 2023/08/31 22:05:46 by jvets            ###   ########.fr       */
+/*   Updated: 2023/08/31 22:12:53 by jvets            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,14 +113,12 @@ void	buffer_cutter(char *buffer, t_list **head)
 		{
 			cut.c++;
 			add_node(ft_substr(buffer, cut.offset, cut.len), &head); // why not &&head?
-			cut.offset = cut.c;
+			cut.offset = cut.c--;
 			cut.len = 1;
 		}
 		else
-		{
-			cut.c++;
 			cut.len++;
-		}
+		cut.c++;
 	}
 }
 
