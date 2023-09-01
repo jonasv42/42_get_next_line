@@ -6,7 +6,7 @@
 /*   By: jvets <jvets@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 16:14:15 by jvets             #+#    #+#             */
-/*   Updated: 2023/08/30 23:01:10 by jvets            ###   ########.fr       */
+/*   Updated: 2023/08/31 22:03:57 by jvets            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,13 @@ typedef struct s_cut
 	ssize_t	offset;
 	int		len;
 }	t_cut;
+
+typedef struct s_nodes
+{
+	t_list	*new_node;
+	t_list	*current;
+	char	*str;
+}	t_nodes;
 
 char	*get_next_line(int fd);
 char	*ft_substr(char const *s, unsigned int start, size_t len);

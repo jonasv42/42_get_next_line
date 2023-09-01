@@ -6,7 +6,7 @@
 /*   By: jvets <jvets@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 16:22:14 by jvets             #+#    #+#             */
-/*   Updated: 2023/08/31 21:45:02 by jvets            ###   ########.fr       */
+/*   Updated: 2023/08/31 22:05:46 by jvets            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,31 +126,29 @@ void	buffer_cutter(char *buffer, t_list **head)
 
 void	add_node(char *content, t_list ***head)
 {
-	t_list	*new_node;
-	t_list	*current;
-	char	*str;
+	t_nodes	node;
 
-	current = **head;
-	while (current != NULL && current->next != NULL)
-		current = current->next;
-	if (current != NULL && current->content
-	&& current->content[ft_strlen(current->content) - 1] != '\n') // if no \n is found strjoin
+	node.current = **head;
+	while (node.current != NULL && node.current->next != NULL)
+		node.current = node.current->next;
+	if (node.current != NULL && node.current->content
+		&& node.current->content[ft_strlen(node.current->content) - 1] != '\n')
 	{
-		str = ft_strjoin(current->content, content);
-		free(current->content);
+		node.str = ft_strjoin(node.current->content, content);
+		free(node.current->content);
 		free(content);
-		current->content = str;
+		node.current->content = node.str;
 	}
 	else
 	{
-		new_node = malloc(sizeof(t_list));
-		if (!new_node)
+		node.new_node = malloc(sizeof(t_list));
+		if (!node.new_node)
 			return ;
-		new_node->content = content;
-		new_node->next = NULL;
+		node.new_node->content = content;
+		node.new_node->next = NULL;
 		if (!**head || (**head)->content == NULL)
-			**head = new_node;
+			**head = node.new_node;
 		else
-			current->next = new_node;
+			node.current->next = node.new_node;
 	}
 }
