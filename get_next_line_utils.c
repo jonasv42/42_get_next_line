@@ -6,7 +6,7 @@
 /*   By: jvets <jvets@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 16:22:14 by jvets             #+#    #+#             */
-/*   Updated: 2023/08/30 22:12:21 by jvets            ###   ########.fr       */
+/*   Updated: 2023/08/31 21:45:02 by jvets            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,21 +133,22 @@ void	add_node(char *content, t_list ***head)
 	current = **head;
 	while (current != NULL && current->next != NULL)
 		current = current->next;
-	if (current != NULL && ft_strlen(current->content) > 0 && current->content[ft_strlen(current->content) - 1] != '\n') // if no \n is found strjoin
+	if (current != NULL && current->content
+	&& current->content[ft_strlen(current->content) - 1] != '\n') // if no \n is found strjoin
 	{
 		str = ft_strjoin(current->content, content);
 		free(current->content);
 		free(content);
 		current->content = str;
 	}
-	else /*if (ft_strlen(content) != 0)*/
+	else
 	{
 		new_node = malloc(sizeof(t_list));
 		if (!new_node)
 			return ;
 		new_node->content = content;
 		new_node->next = NULL;
-		if (!**head || ft_strlen((**head)->content) == 0)
+		if (!**head || (**head)->content == NULL)
 			**head = new_node;
 		else
 			current->next = new_node;

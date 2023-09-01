@@ -6,17 +6,11 @@
 /*   By: jvets <jvets@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 16:15:24 by jvets             #+#    #+#             */
-/*   Updated: 2023/08/31 20:49:12 by jvets            ###   ########.fr       */
+/*   Updated: 2023/08/31 21:39:46 by jvets            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
-// how can i know if my file descriptor has been closed and opened again,
-//in which case i need to free my entire list?
-
-// limpar memoria quando chegar no final de arquivo
-//liimpar memoria quando retornar -1
 
 void	return_function(t_list **head, char **result, int r);
 
@@ -31,9 +25,7 @@ char	*get_next_line(int fd)
 	b_read = -2;
 	while (!result)
 	{
-		//make from common parts if and else if an if for fewer lines?
-		if (head && head->content && ft_strlen(head->content) > 0
-			&& head->content[ft_strlen(head->content) - 1] == '\n')
+		if (head && head->content && head->content[ft_strlen(head->content) - 1] == '\n')
 			return_function(&head, &result, 1);
 		else if (head && head->content && b_read == 0) // only put line w/o \n in result if eof reached (b_read == 0)
 			return_function(&head, &result, 1);
