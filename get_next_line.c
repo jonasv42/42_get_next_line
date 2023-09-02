@@ -6,7 +6,7 @@
 /*   By: jvets <jvets@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 16:15:24 by jvets             #+#    #+#             */
-/*   Updated: 2023/09/01 17:33:30 by jvets            ###   ########.fr       */
+/*   Updated: 2023/09/01 21:03:17 by jvets            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*get_next_line(int fd)
 {
-	static t_list	*head;
+	static t_list	*head[1024];
 	char			*result;
 	ssize_t			b_read;
 
@@ -23,18 +23,18 @@ char	*get_next_line(int fd)
 	while (!result)
 	{
 		//before reading file check if lines lined up to be returned from the previous buffer
-		if (head && head->content
-			&& head->content[ft_strlen(head->content) - 1] == '\n') //if a node contains a full line return it
-			return_function(&head, &result, 1);
-		else if (head && head->content && b_read == 0) //only return node without \n if eof reached
-			return_function(&head, &result, 1);
+		if ((head)[fd] && (head)[fd]->content
+			&& (head)[fd]->content[ft_strlen((head)[fd]->content) - 1] == '\n') //if a node contains a full line return it
+			return_function(&(head)[fd], &result, 1);
+		else if ((head)[fd] && (head)[fd]->content && b_read == 0) //only return node without \n if eof reached
+			return_function(&(head)[fd], &result, 1);
 		else
 		{
-			read_file(&b_read, &head, fd);
-			if ((b_read == 0 && !head) || (b_read == 0 && head
-					&& *head->content == '\0') || b_read < 0) //error and end of file handling
+			read_file(&b_read, &(head)[fd], fd);
+			if ((b_read == 0 && !(head)[fd]) || (b_read == 0 && (head)[fd]
+					&& *(head)[fd]->content == '\0') || b_read < 0) //error and end of file handling
 			{
-				return_function(&head, &result, b_read);
+				return_function(&(head)[fd], &result, b_read);
 				return (NULL);
 			}
 		}
