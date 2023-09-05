@@ -6,7 +6,7 @@
 /*   By: jvets <jvets@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 16:15:24 by jvets             #+#    #+#             */
-/*   Updated: 2023/09/01 21:03:17 by jvets            ###   ########.fr       */
+/*   Updated: 2023/09/05 18:40:20 by jvets            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,15 +70,15 @@ void	return_function(t_list **head, char **result, int r)
 	}
 	else if (r == -1 && *head) //if error when reading, free whole list
 	{
-		aux = *head;
-		while (aux != NULL && (*head)->next != NULL)
+		while (head != NULL && (*head)->next != NULL)
 		{
+			aux = *head;
 			*head = (*head)->next;
 			free(aux->content);
 			free(aux);
 		}
-		free(aux->content);
-		free(aux);
+		free((*head)->content);
+		free((*head));
 		*head = NULL;
 	}
 }
